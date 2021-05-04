@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import Home from "./Home";
+import "todomvc-common/base.css";
+import "todomvc-app-css/index.css";
 
-import "./App.css";
+import Home from "./Home";
 
 const App = () => (
   <Switch>

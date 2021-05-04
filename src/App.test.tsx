@@ -9,6 +9,6 @@ test("renders learn react link", () => {
       <App />
     </MemoryRouter>
   );
-  const headerElement = getByText(/Welcome to Razzle/i);
+  const headerElement = getByText(/todos/i);
   expect(headerElement).toBeInTheDocument();
 });
