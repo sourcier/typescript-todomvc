@@ -1,5 +1,5 @@
-export type Todo = {
-  text: string
+export type TodoProps = {
+  text: string,
   isComplete: boolean,
   id?: string
 }
