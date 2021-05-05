@@ -5,7 +5,6 @@ import Todo from "./Todo";
 
 const TodoList: React.FC = (props): JSX.Element => {
   const todoList = useRecoilValue(todoListState);
-  console.log(todoList);
 
   return (
     <section className="main">

@@ -2,7 +2,7 @@ import React from "react";
 
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import { TodoList } from "./components/todo";
+import { TodoList } from "./components/Todo";
 
 const Home: React.FC = (props): JSX.Element => {
   return (
