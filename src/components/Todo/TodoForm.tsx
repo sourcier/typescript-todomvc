@@ -1,8 +1,11 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { TodoFormProps } from "./Todo.d";
 
-const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }): JSX.Element => {
+interface TodoFormProps {
+  onSubmit: (todo) => void;
+}
+
+const TodoForm = ({ onSubmit }: TodoFormProps): JSX.Element => {
   const [value, setValue] = useState("");
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void =>
@@ -24,7 +27,6 @@ const TodoForm: React.FC<TodoFormProps> = ({ onSubmit }): JSX.Element => {
       <input
         className="new-todo"
         placeholder="What needs to be done?"
-        autoFocus
         value={value}
         onChange={handleChange}
       />

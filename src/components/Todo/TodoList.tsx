@@ -3,7 +3,7 @@ import { useRecoilValue } from "recoil";
 import { todoListState } from "../../libs/recoil/atoms/todo";
 import Todo from "./Todo";
 
-const TodoList: React.FC = (props): JSX.Element => {
+const TodoList = (): JSX.Element => {
   const todoList = useRecoilValue(todoListState);
 
   return (
