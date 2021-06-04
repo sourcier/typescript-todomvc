@@ -1,10 +1,11 @@
 import React from "react";
-import { useRecoilValue } from "recoil";
-import { todoListState } from "../../libs/recoil/atoms/todo";
+
 import Todo from "./Todo";
+import { useAppSelector } from "../../hooks";
+import { selectTodoList } from "../../store/slices/todosSlice";
 
 const TodoList = (): JSX.Element => {
-  const todoList = useRecoilValue(todoListState);
+  const todoList = useAppSelector(selectTodoList);
 
   return (
     <section className="main">

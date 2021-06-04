@@ -4,7 +4,7 @@ import { TodoForm } from "./Todo";
 const Header: React.FC = (): JSX.Element => (
   <header className="header">
     <h1>todos</h1>
-    <TodoForm onSubmit={() => {}} />
+    <TodoForm />
   </header>
 );
 

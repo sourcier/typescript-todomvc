@@ -1,12 +1,11 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
-interface TodoFormProps {
-  onSubmit: (todo) => void;
-}
+import { useAppDispatch } from "../../hooks";
+import { addTodo } from "../../store/slices/todosSlice";
 
-const TodoForm = ({ onSubmit }: TodoFormProps): JSX.Element => {
+const TodoForm = (): JSX.Element => {
   const [value, setValue] = useState("");
+  const dispatch = useAppDispatch();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void =>
     setValue(event.target.value);
@@ -14,11 +13,7 @@ const TodoForm = ({ onSubmit }: TodoFormProps): JSX.Element => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     event.stopPropagation();
-    onSubmit({
-      id: uuidv4(),
-      text: value,
-      isComplete: false,
-    });
+    dispatch(addTodo(value));
     setValue("");
   };
 
