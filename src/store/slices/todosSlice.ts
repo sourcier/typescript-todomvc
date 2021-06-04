@@ -28,6 +28,14 @@ export const counterSlice = createSlice({
     removeTodo: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((todo) => todo.id !== action.payload);
     },
+    updateTodo: (
+      state,
+      { payload: { id, text } }: PayloadAction<{ id: string; text: string }>
+    ) => {
+      state.items = state.items.map((todo) =>
+        todo.id === id ? { ...todo, text } : todo
+      );
+    },
   },
 });
 
@@ -44,6 +52,6 @@ export const selectTodoList = (state: RootState) => {
   }
 };
 
-export const { addTodo, removeTodo } = counterSlice.actions;
+export const { addTodo, removeTodo, updateTodo } = counterSlice.actions;
 
 export default counterSlice.reducer;

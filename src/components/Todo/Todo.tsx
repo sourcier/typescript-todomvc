@@ -1,29 +1,67 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
+import classnames from "classnames";
 
 interface TodoProps {
+  id: string;
   text: string;
   isComplete: boolean;
   removeTodo: () => void;
+  updateTodo: (todo) => void;
 }
 
-const Todo = ({ isComplete, text, removeTodo }: TodoProps): JSX.Element => (
-  <li>
-    <div className="view">
+const Todo = ({
+  id,
+  isComplete,
+  text,
+  removeTodo,
+  updateTodo,
+}: TodoProps): JSX.Element => {
+  const [editing, setEdting] = useState(false);
+  const [value, setValue] = useState(text);
+  const textInput = useRef(null);
+
+  const handleChange = (event) => setValue(event.target.value);
+  const handleSubmit = () => {
+    updateTodo({ id, text: value });
+    setEdting(false);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === "Escape") {
+      event.preventDefault();
+      event.stopPropagation();
+      handleSubmit();
+    }
+  };
+
+  useEffect(() => {
+    textInput.current.focus();
+  });
+
+  return (
+    <li className={classnames({ completed: isComplete, editing })}>
+      <div className="view">
+        <input className="toggle" type="checkbox" checked={isComplete} />
+        <label onDoubleClick={() => setEdting(true)} htmlFor=".">
+          {text}
+        </label>
+        <button
+          type="button"
+          aria-label="Delete"
+          className="destroy"
+          onClick={() => removeTodo()}
+        />
+      </div>
       <input
-        id="toggle"
-        className="toggle"
-        type="checkbox"
-        checked={isComplete}
+        className="edit"
+        ref={textInput}
+        value={value}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        onBlur={handleSubmit}
       />
-      <label htmlFor="toggle">{text}</label>
-      <button
-        type="button"
-        className="destroy"
-        aria-label="Delete"
-        onClick={removeTodo}
-      />
-    </div>
-  </li>
-);
+    </li>
+  );
+};
 
 export default Todo;
