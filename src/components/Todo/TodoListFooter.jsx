@@ -1,21 +1,22 @@
 import React from "react";
 import classnames from "classnames";
 
-import { useAppSelector } from "../../hooks";
-import { selectTodoListCounts } from "../../store/slices/todosSlice";
-
-// import { setTodoFilter, clearCompletedTodos } from "../store/slices/todosSlice";
+import { useAppSelector, useAppDispatch } from "../../hooks";
+import {
+  selectTodoListCounts,
+  setTodoFilter,
+  clearCompletedTodos,
+} from "../../store/slices/todosSlice";
 
 const TodoListFooter = () => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { totalCompleted, totalUncompleted } =
     useAppSelector(selectTodoListCounts);
-  // const filter = useSelector((state) => state.todos.filter);
+  const filter = useAppSelector((state) => state.todos.filter);
 
-  // const updateFilter = (value) => {
-  //   // dispatch(setTodoFilter(value));
-  // };
-  const filter = "All";
+  const updateFilter = (value) => {
+    dispatch(setTodoFilter(value));
+  };
 
   return (
     <footer className="footer">
@@ -27,7 +28,7 @@ const TodoListFooter = () => {
           <button
             type="button"
             className={classnames({ selected: filter === "All" })}
-            // onClick={() => updateFilter("All")}
+            onClick={() => updateFilter("All")}
           >
             All
           </button>
@@ -36,7 +37,7 @@ const TodoListFooter = () => {
           <button
             type="button"
             className={classnames({ selected: filter === "Active" })}
-            // onClick={() => updateFilter("Active")}
+            onClick={() => updateFilter("Active")}
           >
             Active
           </button>
@@ -45,7 +46,7 @@ const TodoListFooter = () => {
           <button
             type="button"
             className={classnames({ selected: filter === "Completed" })}
-            // onClick={() => updateFilter("Completed")}
+            onClick={() => updateFilter("Completed")}
           >
             Completed
           </button>
@@ -55,7 +56,7 @@ const TodoListFooter = () => {
         <button
           type="button"
           className="clear-completed"
-          // onClick={() => dispatch(clearCompletedTodos())}
+          onClick={() => dispatch(clearCompletedTodos())}
         >
           Clear completed
         </button>

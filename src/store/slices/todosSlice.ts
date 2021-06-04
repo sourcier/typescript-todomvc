@@ -43,6 +43,12 @@ export const counterSlice = createSlice({
           : todo
       );
     },
+    clearCompletedTodos: (state) => {
+      state.items = state.items.filter(({ isComplete }) => !isComplete);
+    },
+    setTodoFilter: (state, action: PayloadAction<string>) => {
+      state.filter = action.payload;
+    },
   },
 });
 
@@ -69,7 +75,13 @@ export const selectTodoListCounts = (state: RootState) => {
   };
 };
 
-export const { addTodo, removeTodo, updateTodo, toggleTodoCompletion } =
-  counterSlice.actions;
+export const {
+  addTodo,
+  removeTodo,
+  updateTodo,
+  toggleTodoCompletion,
+  setTodoFilter,
+  clearCompletedTodos,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;
