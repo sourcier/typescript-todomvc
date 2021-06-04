@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import "todomvc-common/base.css";
 import "todomvc-app-css/index.css";
+import "./App.css";
 import Home from "./Home";
 
 const App = () => (

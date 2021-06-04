@@ -59,6 +59,16 @@ export const selectTodoList = (state: RootState) => {
   }
 };
 
+export const selectTodoListCounts = (state: RootState) => {
+  const { items } = state.todos;
+
+  return {
+    totalTodos: items.length,
+    totalCompleted: items.filter(({ isComplete }) => isComplete).length,
+    totalUncompleted: items.filter(({ isComplete }) => !isComplete).length,
+  };
+};
+
 export const { addTodo, removeTodo, updateTodo, toggleTodoCompletion } =
   counterSlice.actions;
 
