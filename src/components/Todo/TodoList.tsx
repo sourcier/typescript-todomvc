@@ -6,6 +6,7 @@ import {
   selectTodoList,
   removeTodo,
   updateTodo,
+  toggleTodoCompletion,
 } from "../../store/slices/todosSlice";
 
 const TodoList = (): JSX.Element => {
@@ -23,6 +24,7 @@ const TodoList = (): JSX.Element => {
             isComplete={isComplete}
             removeTodo={() => dispatch(removeTodo(id))}
             updateTodo={(todo) => dispatch(updateTodo(todo))}
+            toggleCompletion={() => dispatch(toggleTodoCompletion(id))}
           />
         ))}
       </ul>

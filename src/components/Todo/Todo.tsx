@@ -7,6 +7,7 @@ interface TodoProps {
   isComplete: boolean;
   removeTodo: () => void;
   updateTodo: (todo) => void;
+  toggleCompletion: () => void;
 }
 
 const Todo = ({
@@ -15,6 +16,7 @@ const Todo = ({
   text,
   removeTodo,
   updateTodo,
+  toggleCompletion,
 }: TodoProps): JSX.Element => {
   const [editing, setEdting] = useState(false);
   const [value, setValue] = useState(text);
@@ -41,7 +43,12 @@ const Todo = ({
   return (
     <li className={classnames({ completed: isComplete, editing })}>
       <div className="view">
-        <input className="toggle" type="checkbox" checked={isComplete} />
+        <input
+          className="toggle"
+          type="checkbox"
+          checked={isComplete}
+          onChange={toggleCompletion}
+        />
         <label onDoubleClick={() => setEdting(true)} htmlFor=".">
           {text}
         </label>
